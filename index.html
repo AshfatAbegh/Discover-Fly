@@ -56,8 +56,8 @@
                 <div class="plus-minus-btn">
         
                     <p> 
-                        <span id="increase">+</span> 
-                        <span id="decrease">-</span> 
+                        <button><span id="increase">+</span></button>
+                        <button><span id="decrease">-</span></button>
                    </p>
                 </div>
             </div>
@@ -69,8 +69,8 @@
                 </div>
                 <div class="plus-minus-btn">
                     <p> 
-                        <span id="number-increase">+</span> 
-                        <span id="number-decrease">-</span> 
+                       <button> <span id="number-increase">+</span> </button>
+                        <button><span id="number-decrease">-</span> </button>
                     </p>
                 </div>
             </div>
@@ -113,28 +113,67 @@
 
     <!--Thank You-->
     <script>
-        // first class without function
-            document.getElementById('increase').addEventListener('click',function(){
-               const caseInput = document.getElementById('input');
+        // first class with function
+        function handleProductChange(isIncrease){
+            const caseInput = document.getElementById('input');
                const caseCount = parseInt(caseInput.value);
-               const caseNewCount = caseCount +1;
+            //    const caseNewCount = caseCount +1;
+            let caseNewCount = caseCount;
+            if(isIncrease == true){
+                caseNewCount = caseCount +1;
+            }
+            if(isIncrease == false && caseCount > 0){
+                caseNewCount = caseCount -1;
+            }
                caseInput.value = caseNewCount;
 
                const caseTotal = caseNewCount*150;
                document.getElementById('case-total').innerText = 'First Class $'+'('+ caseTotal +')';
                calculateTotal();
+        }
+        // first class without function
+            document.getElementById('increase').addEventListener('click',function(){
+            //    const caseInput = document.getElementById('input');
+            //    const caseCount = parseInt(caseInput.value);
+            //    const caseNewCount = caseCount +1;
+            //    caseInput.value = caseNewCount;
+
+            //    const caseTotal = caseNewCount*150;
+            //    document.getElementById('case-total').innerText = 'First Class $'+'('+ caseTotal +')';
+            //    calculateTotal();
+            handleProductChange(true);
             });
 
                document.getElementById('decrease').addEventListener('click',function(){
-               const caseInput = document.getElementById('input');
-               const caseCount = parseInt(caseInput.value);
-               const caseNewCount = caseCount -1;
-               caseInput.value = caseNewCount;
+            //    const caseInput = document.getElementById('input');
+            //    const caseCount = parseInt(caseInput.value);
+            //    const caseNewCount = caseCount -1;
+            //    caseInput.value = caseNewCount;
                
-               const caseTotal = caseNewCount*150;
-               document.getElementById('case-total').innerText = 'First Class $'+'('+ caseTotal +')';
-               calculateTotal();
+            //    const caseTotal = caseNewCount*150;
+            //    document.getElementById('case-total').innerText = 'First Class $'+'('+ caseTotal +')';
+            //    calculateTotal();
+            handleProductChange(false);
             });
+
+            // economy with function
+        //     function handleProductChange(numberIncrease){
+        //     const Input = document.getElementById('inputNumber');
+        //        const Count = parseInt(Input.value);
+        //     //    const updateCount = Count +1;
+        //     let updateCount = Count;
+        //     if(numberIncrease == true){
+        //         updateCount = Count +1;
+        //     }
+        //     if(numberIncrease == false && Count > 0){
+        //         updateCount = Count -1;
+        //     }
+        //        Input.value = updateCount;
+
+        //        const Total = updateCount*100;
+        //        document.getElementById('sumTotal').innerText = 'Economy $'+'('+ Total +')';
+        //        calculateTotal();
+        // }
 
         //   economy without function
             
@@ -147,6 +186,7 @@
                   const Total = updateCount*100;
                   document.getElementById('sumTotal').innerText = 'Economy $'+'('+ Total+')';
                   calculateTotal();
+                // handleProductChange(true);
             });
 
             document.getElementById('number-decrease').addEventListener('click',function(){
@@ -158,7 +198,7 @@
                   const Total = updateCount*100;
                   document.getElementById('sumTotal').innerText = 'Economy $'+'('+ Total+')';
                   calculateTotal();
-
+            //     handleProductChange(false);
             });
 
             function calculateTotal(){
